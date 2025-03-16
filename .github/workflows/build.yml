@@ -18,8 +18,10 @@ jobs:
     - name: clean android
       working-directory: ./Oxygen/sonic3air/___internal/mastering
       run: |
+        ./mastering_windows_32bit.bat
+        ./mastering_linux.sh
+        ./setup_linux.sh
         ./clean_android.bat
-        pause
     - name: mastering android
       working-directory: ./Oxygen/sonic3air/___internal/mastering
       run: ./mastering_android.bat
