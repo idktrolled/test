@@ -15,19 +15,9 @@ jobs:
       with:
         java-version: '17'
         distribution: 'temurin'
-    - name: clean android
-      working-directory: ./Oxygen/sonic3air/___internal/mastering
-      run: |
-        ./mastering_windows_32bit.bat
-        ./mastering_linux.sh
-        ./setup_linux.sh
-        ./clean_android.bat
-    - name: mastering android
-      working-directory: ./Oxygen/sonic3air/___internal/mastering
-      run: ./mastering_android.bat
     - name: gradlew
-      working-directory: ./Oxygen/sonic3air/build/_android
-      run: ./gradlew assembleDebug --no-daemon -PABIFILTERS="armeabi-v7a;arm64-v8a" -PRETRO_DISABLE_PLUS
+      working-directory: ./framework/external
+      run: ./build_externals_windows.bat
     - name: artifact
       uses: actions/upload-artifact@main
       with:
