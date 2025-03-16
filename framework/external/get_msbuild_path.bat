@@ -1,8 +1,8 @@
 @echo off
 
 :: You might need to change this path to point to your Visual Studio installation's MSBuild.exe
-set msbuildPathCom="C:\Program Files\Microsoft Visual Studio\2022\Community\MSBuild\Current\Bin\MSBuild.exe"
-set msbuildPathPro="C:\Program Files\Microsoft Visual Studio\2022\Professional\MSBuild\Current\Bin\MSBuild.exe"
+set msbuildPathCom="C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\MSBuild\Current\Bin\MSBuild.exe"
+set msbuildPathPro="C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\Current\Bin\MSBuild.exe"
 
 if exist %msbuildPathPro% (
 	set msbuildPath=%msbuildPathPro%
