@@ -1,0 +1,33 @@
+name: build
+on:
+  push:
+    branches:
+      - main
+
+env:
+  GENERAL_FLAGS: "-DRETRO_DISABLE_PLUS=ON -DCMAKE_BUILD_TYPE=Release"
+jobs:
+  build:
+    runs-on: windows-latest
+    steps:
+    - uses: actions/checkout@main
+    - uses: actions/setup-java@main
+      with:
+        java-version: '17'
+        distribution: 'temurin'
+    - name: clean android
+      working-directory: ./Oxygen/sonic3air/___internal/mastering
+      run: |
+        ./clean_android.bat
+        pause
+    - name: mastering android
+      working-directory: ./Oxygen/sonic3air/___internal/mastering
+      run: ./mastering_android.bat
+    - name: gradlew
+      working-directory: ./Oxygen/sonic3air/build/_android
+      run: ./gradlew.bat assembleDebug --no-daemon -PABIFILTERS="armeabi-v7a;arm64-v8a" -PRETRO_DISABLE_PLUS
+    - name: artifact
+      uses: actions/upload-artifact@main
+      with:
+        name: project
+        path: ./Oxygen/sonic3air/build/_android/app/build/outputs/apk
